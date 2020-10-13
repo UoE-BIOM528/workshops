@@ -1,0 +1,15 @@
+{% include sortedpages.html %}
+<div class="page-navigation">
+{% for node in sorted_pages %}
+  {% if page.url == node.url %}
+    {% unless forloop.first %} 
+	    <a class="prev" href="{{ site.baseurl }}{{prevpage.url}}">&laquo; {{prevpage.title}}</a>
+    {% endunless %}
+    {% unless forloop.last %} 
+      {% assign nextpage = sorted_pages[forloop.index] %}
+	    <a class="next" href="{{ site.baseurl }}{{nextpage.url}}">&raquo; {{nextpage.title}}</a>
+    {% endunless %}
+  {% endif %}
+  {% assign prevpage = node %}
+{% endfor %}
+</div> 

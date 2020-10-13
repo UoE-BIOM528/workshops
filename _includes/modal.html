@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="interior">
+    <a class="btn btn-modal {{include.type}}" href="#open-modal{{include.url | slugify}}">
+      {{include.buttontext}}
+    </a>
+  </div>
+</div>
+<div id="open-modal{{include.url | slugify}}" class="modal-window">
+  <div>
+    <a href="#/" title="Close" class="modal-close">&times;</a>
+    <h1>{{include.title}}</h1>
+
+    {% comment %}
+    {% include_relative {{include.url}} %}
+    {% endcomment %}
+<div markdown="1">
+		    
+{% include_relative {{include.url}} %}
+
+</div>
+  </div>
+</div>

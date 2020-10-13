@@ -1,0 +1,11 @@
+---
+layout: singlepage 
+---
+
+{% include sortedpages.html %}
+<div class="singlepage">
+  {% for node in sorted_pages %}
+    <h1 class="page-title">{{ node.title }}</h1>
+    {{ node.content }}
+  {% endfor %}
+</div>

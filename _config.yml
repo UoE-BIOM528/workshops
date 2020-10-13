@@ -1,0 +1,9 @@
+theme: jekyll-theme-cayman
+baseurl: /rna-seq
+defaults:
+    -
+        scope:
+            path: ""
+            type: "pages"
+        values:
+            layout: "default"

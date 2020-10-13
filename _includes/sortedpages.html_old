@@ -1,0 +1,12 @@
+{% assign sorted_pages = site.pages | where:"layout","page" | sort: "order" %}
+
+{% comment %}
+Old version - before default layout was set to default!
+{% assign sorted_pages = ''|split:''%}
+{% for node in site.pages %}
+  {% if node.layout == "page" and node.title != null %}
+    {% assign sorted_pages = sorted_pages |push:node %}
+  {% endif %}
+{% endfor %}
+{% assign sorted_pages = sorted_pages | sort:"order"%}
+{% endcomment%}
