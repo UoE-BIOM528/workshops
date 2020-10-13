@@ -1,5 +1,5 @@
 theme: jekyll-theme-cayman
-baseurl: /rna-seq
+baseurl: /workshops
 defaults:
     -
         scope:
