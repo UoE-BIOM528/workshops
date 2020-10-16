@@ -10,14 +10,15 @@ Ryan Ames <mailto:r.ames@exeter.ac.uk>
 
 ## Objectives
 
-* Understand the theory behind transcriptome analysis using high throughput sequencing
-* Perform a quality control check of raw Illumina RNA-Seq data
-* Perform a splicing aware alignment of RNA-seq data against a reference
-* Assign reads to known genomic features
-* Perform a differential analysis of a dataset using DESeq2
-* Pick out the most highly regulated genes from a dataset
-* GO term enrichment analysis using topGO
-* Perform network analysis on time point data
+The main objectives of these workshops will be to:
+* Understand some of the tools and methods used to perform comparative genomics analysis of fungal pathogens
+..* Download current genomics data
+..* *De novo* assembly of raw sequencing reads to build a genome assembly
+..* *Ab initio* prediction of gene sequences from a genome assembly
+..* Organisation of predicted genes into gene families
+..* Analysis of gene families to identify signs of positive selection
+* Interpret the results to make inferences about the evolution of plant pathogens
+
 
 ## Introduction
 
