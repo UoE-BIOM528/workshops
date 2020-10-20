@@ -72,7 +72,7 @@ More detailed information on these software, including installation instructions
 
 #### Augustus Gene Predictor
 
-In order to predict genes from a genome sequence we will be using [Augustus](https://academic.oup.com/bioinformatics/article/24/5/637/202844)
+In order to predict genes from a genome sequence we will be using [Augustus](https://academic.oup.com/bioinformatics/article/19/suppl_2/ii215/180603)
 
 The Augustus program, complete with tutorials, examples and documentation can be found on [GitHub](https://github.com/Gaius-Augustus/Augustus).
 
