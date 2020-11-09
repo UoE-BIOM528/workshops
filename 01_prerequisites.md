@@ -62,7 +62,7 @@ To successfully use your own machine you will need to:
 In these workshops we will be using:
 * SOAPdeNOVO2 (genome assembly)
 * Augustus (gene prediction)
-* OrthoMCL (gene family identification)
+* MCL algorithm (gene family identification)
 * RAxML (gene tree inference)
 * PAML (Estimation of accelerated evolution)
 
@@ -140,4 +140,82 @@ augustus [parameters] --species=SPECIES queryfilename
 in fasta format.
 
 SPECIES is an identifier for the species. Use --species=help to see a list.
+```
+
+#### BLAST and MCL algorithm
+
+To identify gene family from predicted protein sequences were are going to use both BLAST and the MCL algorithm.
+
+1. BLAST can be installed by following the instructions [here](https://www.ncbi.nlm.nih.gov/books/NBK279671/). It's available for linux, MacOSX and Windows machines all with pre-compiled binaries or installation packages. Once you have installed BLAST you can check you the required programs are working correctly with:
+
+```
+makeblastdb -h
+```
+
+where you  should see something along the lines of:
+
+```
+USAGE
+  makeblastdb [-h] [-help] [-in input_file] [-input_type type]
+    -dbtype molecule_type [-title database_title] [-parse_seqids]
+    [-hash_index] [-mask_data mask_data_files] [-mask_id mask_algo_ids]
+    [-mask_desc mask_algo_descriptions] [-gi_mask]
+    [-gi_mask_name gi_based_mask_names] [-out database_name]
+    [-max_file_sz number_of_bytes] [-logfile File_Name] [-taxid TaxID]
+    [-taxid_map TaxIDMapFile] [-version]
+
+DESCRIPTION
+   Application to create BLAST databases, version 2.7.1+
+
+Use '-help' to print detailed descriptions of command line arguments
+```
+
+and also:
+
+```
+blastp -h
+```
+
+which should  give:
+
+```
+USAGE
+  blastp [-h] [-help] [-import_search_strategy filename]
+    [-export_search_strategy filename] [-task task_name] [-db database_name]
+    [-dbsize num_letters] [-gilist filename] [-seqidlist filename]
+    [-negative_gilist filename] [-negative_seqidlist filename]
+    [-entrez_query entrez_query] [-db_soft_mask filtering_algorithm]
+    [-db_hard_mask filtering_algorithm] [-subject subject_input_file]
+    [-subject_loc range] [-query input_file] [-out output_file]
+    [-evalue evalue] [-word_size int_value] [-gapopen open_penalty]
+    [-gapextend extend_penalty] [-qcov_hsp_perc float_value]
+    [-max_hsps int_value] [-xdrop_ungap float_value] [-xdrop_gap float_value]
+    [-xdrop_gap_final float_value] [-searchsp int_value]
+    [-sum_stats bool_value] [-seg SEG_options] [-soft_masking soft_masking]
+    [-matrix matrix_name] [-threshold float_value] [-culling_limit int_value]
+    [-best_hit_overhang float_value] [-best_hit_score_edge float_value]
+    [-window_size int_value] [-lcase_masking] [-query_loc range]
+    [-parse_deflines] [-outfmt format] [-show_gis]
+    [-num_descriptions int_value] [-num_alignments int_value]
+    [-line_length line_length] [-html] [-max_target_seqs num_sequences]
+    [-num_threads int_value] [-ungapped] [-remote] [-comp_based_stats compo]
+    [-use_sw_tback] [-version]
+
+DESCRIPTION
+   Protein-Protein BLAST 2.7.1+
+
+Use '-help' to print detailed descriptions of command line arguments
+```
+
+2. The [MCL algorithm](https://micans.org/mcl/) can be [downloaded](https://micans.org/mcl/src/) and installed by following the instructions from this [page](https://micans.org/mcl/index.html?sec_license). To follow these instructions you will need to be using a Linux or Mac system.
+
+When you have downloaded and installed the MCL algorithm check it runs by executing the command:
+
+```
+<path-to-install-dir>/mcl
+```
+where `<path-to-install-dir>` is the path to where the MCL executable is installed. You may not need the path here if you have followed the installation instructions correctly. If successful you should see some outout that starts:
+
+```
+[mcl] usage: mcl <-|file name> [options], do 'mcl -h' or 'man mcl' for help
 ```
