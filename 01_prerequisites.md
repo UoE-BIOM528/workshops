@@ -219,3 +219,143 @@ where `<path-to-install-dir>` is the path to where the MCL executable is install
 ```
 [mcl] usage: mcl <-|file name> [options], do 'mcl -h' or 'man mcl' for help
 ```
+
+#### Muscle
+
+In order to align sequences we will need to use software for Multiple Sequence Alignment. For this we will use [Muscle](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-5-113), a fast aligner for multiple sequences. A download page for precompiled Muscle executables can be found [here](https://www.drive5.com/muscle/downloads.htm). Once you have downloaded the software and put it somewhere it can be accessed (either in your HOME directory or on your PATH) try:
+
+```
+muscle
+```
+
+**OR**
+
+```
+muscle3.8.31_i86darwin64
+```
+
+You should then see the following output:
+
+```
+MUSCLE v3.8.31 by Robert C. Edgar
+
+http://www.drive5.com/muscle
+This software is donated to the public domain.
+Please cite: Edgar, R.C. Nucleic Acids Res 32(5), 1792-97.
+
+
+Basic usage
+
+    muscle -in <inputfile> -out <outputfile>
+
+Common options (for a complete list please see the User Guide):
+
+    -in <inputfile>    Input file in FASTA format (default stdin)
+    -out <outputfile>  Output alignment in FASTA format (default stdout)
+    -diags             Find diagonals (faster for similar sequences)
+    -maxiters <n>      Maximum number of iterations (integer, default 16)
+    -maxhours <h>      Maximum time to iterate in hours (default no limit)
+    -html              Write output in HTML format (default FASTA)
+    -msf               Write output in GCG MSF format (default FASTA)
+    -clw               Write output in CLUSTALW format (default FASTA)
+    -clwstrict         As -clw, with 'CLUSTAL W (1.81)' header
+    -log[a] <logfile>  Log to file (append if -loga, overwrite if -log)
+    -quiet             Do not write progress messages to stderr
+    -version           Display version information and exit
+```
+
+#### PAL2NAL
+
+We will also have to reformat alignments and sequences as part of our analysis pipeline. To accomplish this task we will use [PAL2NAL](http://www.bork.embl.de/pal2nal/), a Perl script that converts a protein alignment and associated coding sequences into a into codon alignment. You can download the latest version [here](http://www.bork.embl.de/pal2nal/#Download). Place the Perl script on your path or in the current directory and run with:
+
+```
+pal2nal.pl
+```
+
+Then you should see the following output:
+
+```
+pal2nal.pl  (v14)
+
+Usage:  pal2nal.pl  pep.aln  nuc.fasta  [nuc.fasta...]  [options]
+
+
+    pep.aln:    protein alignment either in CLUSTAL or FASTA format
+
+    nuc.fasta:  DNA sequences (single multi-fasta or separated files)
+
+    Options:  -h            Show help
+
+              -output (clustal|paml|fasta|codon)
+                            Output format; default = clustal
+
+              -blockonly    Show only user specified blocks
+                            '#' under CLUSTAL alignment (see example)
+
+              -nogap        remove columns with gaps and inframe stop codons
+
+              -nomismatch   remove mismatched codons (mismatch between
+                            pep and cDNA) from the output
+
+              -codontable  N
+                    1  Universal code (default)
+                    2  Vertebrate mitochondrial code
+                    3  Yeast mitochondrial code
+                    4  Mold, Protozoan, and Coelenterate Mitochondrial code
+                       and Mycoplasma/Spiroplasma code
+                    5  Invertebrate mitochondrial
+                    6  Ciliate, Dasycladacean and Hexamita nuclear code
+                    9  Echinoderm and Flatworm mitochondrial code
+                   10  Euplotid nuclear code
+                   11  Bacterial, archaeal and plant plastid code
+                   12  Alternative yeast nuclear code
+                   13  Ascidian mitochondrial code
+                   14  Alternative flatworm mitochondrial code
+                   15  Blepharisma nuclear code
+                   16  Chlorophycean mitochondrial code
+                   21  Trematode mitochondrial code
+                   22  Scenedesmus obliquus mitochondrial code
+                   23  Thraustochytrium mitochondrial code
+
+
+              -html         HTML output (only for the web server)
+
+              -nostderr     No STDERR messages (only for the web server)
+
+
+    - sequence order in pep.aln and nuc.fasta should be the same.
+
+    - IDs in pep.aln are used in the output.
+```
+
+#### RAxML
+
+For some of our analyses we will need to infer some phylogenetic trees. To do this we will use [RAxML](https://cme.h-its.org/exelixis/web/software/raxml/). The homepage contains useful links to the [GitHub repository](https://github.com/stamatak/standard-RAxML), which includes Windows executables, the [manual](https://cme.h-its.org/exelixis/resource/download/NewManual.pdf) and guides for installation on [Mac OSX](http://www.sfu.ca/biology2/staff/dc/raxml/).
+
+Once installed you can run:
+
+```
+raxmlHPC-AVX -v
+```
+
+and you should see some output like:
+
+```
+This is RAxML version 8.2.12 released by Alexandros Stamatakis on May 2018.
+
+With greatly appreciated code contributions by:
+Andre Aberer      (HITS)
+Simon Berger      (HITS)
+Alexey Kozlov     (HITS)
+Kassian Kobert    (HITS)
+David Dao         (KIT and HITS)
+Sarah Lutteropp   (KIT and HITS)
+Nick Pattengale   (Sandia)
+Wayne Pfeiffer    (SDSC)
+Akifumi S. Tanabe (NRIFS)
+Charlie Taylor    (UF)
+```
+
+#### PAML
+
+We will be using [PAML](http://abacus.gene.ucl.ac.uk/software/paml.html), which has extensive documentation and installation instructions. Please follow the instructions to install PAML on your machine. Instructions are included for Windows, Mac OSX (including precompiled binaries) and Linux.

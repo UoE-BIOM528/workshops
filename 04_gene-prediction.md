@@ -96,6 +96,7 @@ We can tell by the gene IDs (line such as `# start gene g577`) that Augustus pre
 2. Try running Augustus on [chromosome 11](data/Z.tritici.chr11.fasta).
   * Use the Ensembl fungi browser to check the prediction
   * Can you think of any reasons why there might be a discrepancy?
+3. Augustus by default only predicts the protein sequences of identified genes. Can you also predict coding sequences?
 
 ## A final gene prediction
 

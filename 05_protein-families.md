@@ -20,13 +20,13 @@ To run this analysis we will use the proteome (all protein sequences encoded in 
 
 If you want to do this yourself you will need to create an account with your University email. Otherwise the required data is available from ...
 
-### Steps of our analysis
+## Steps of our analysis
 
 To infer our protein families we will first have to complete multiple preparation steps. The workflow for this part of our analysis will be:
 
-* Reformat our protein sequences
-* Run BLAST to calculate protein similarity
-* Run MCL to identify protein families
+1. Reformat our protein sequences
+2. Run BLAST to calculate protein similarity
+3. Run MCL to identify protein families
 
 ### Data reformatting
 
