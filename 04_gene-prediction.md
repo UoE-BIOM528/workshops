@@ -22,12 +22,13 @@ In this workshop we will use [Augustus](https://academic.oup.com/bioinformatics/
 
 ### Navigate to the data directory
 
-First we will navigate to our data directory. On the virtual machine this will be:
+First we will navigate to our data directory:
 
 ```
-cd ~/Data/Z.tritici/
+cd ~/Desktop/Data/Z.tritici/
 ```
 
+If you use `ls` to list the files in the directory you will see a range of *Z. tritici* files.
 
 ### Getting help
 
@@ -49,7 +50,7 @@ Next, we two types of input data.
 
 ### Genome assembly
 
-In the last workshop we looked at how to assemble a genome. For this task we will use a single chromosome from an already complete and assembled genome for *Z. tritici*. If you're working on your own machine you should have already downloaded the data. For this exercise we'll be using the sequence for chromosome 10. To download this file right click and save choose save as on this [link](data/Z.tritici.chr10.fasta). We're only going to infer the genes on a single chromosome first as the gene prediction algorithm can take minutes to hours.
+In the last workshop we looked at how to assemble a genome. For this task we will use a single chromosome from an already complete and assembled genome for *Z. tritici*. If you're working on your own machine you should have already downloaded the data. For this exercise we'll be using the sequence for chromosome 10 - `Z.tritici.chr10.fasta`.  We're only going to infer the genes on a single chromosome first as the gene prediction algorithm can take minutes to hours.
 
 ### Reference species
 
@@ -93,7 +94,7 @@ We can tell by the gene IDs (line such as `# start gene g577`) that Augustus pre
 1. Run the analysis again on chromosome 10 but this time choose a different fungal pathogen as your reference.
   * Are there any differences?
   * How might you check these predictions against one another or with the *Z.tritici* reference?
-2. Try running Augustus on [chromosome 11](data/Z.tritici.chr11.fasta).
+2. Try running Augustus on using the chromosome 11 file: `Z.tritici.chr11.fasta`.
   * Use the Ensembl fungi browser to check the prediction
   * Can you think of any reasons why there might be a discrepancy?
 3. Augustus by default only predicts the protein sequences of identified genes. Can you also predict coding sequences?
@@ -113,10 +114,10 @@ The `>` redirects the output to a new file called `Z.tritici.chr10.gff`, which w
 Even though we have saved our results they are only in GFF file format. Our next analysis will need the extracted protein sequences in fasta format. Luckily Augustus provides a set of [utility scripts](https://github.com/Gaius-Augustus/Augustus/tree/master/scripts) that can perform a variety of tasks. One such script, `getAnnoFasta.pl` will extract the protein sequences from a GFF file. Lets try the command:
 
 ```
-perl <path-to-augustus>/scripts/getAnnoFasta.pl Z.tritici.chr10.gff
+perl ~/software/augustus/scripts/getAnnoFasta.pl Z.tritici.chr10.gff
 ```
 
-Where `<path-to-augustus>` is the path to the directory where Augustus was downloaded (but not necessarily where it is installed!). If you run the above command we can see the file `Z.tritici.chr10.aa` has been generated. This is a fasta formatted file that will look something like:
+NB - if you're running this on your own machine the path to augustus and the perl script may be different. If you run the above command we can see the file `Z.tritici.chr10.aa` has been generated. This is a fasta formatted file that will look something like:
 
 ```
 >g1.t1
@@ -131,7 +132,13 @@ AKQLILDEKLSPFEALKILREHFSKGGAGEFARVSTLWNLITMDGAKGIGHYGSEIRRLWNRFAEIDSSLKIPEPHAVQK
 KLIPKTENNRTVTNAVSLGEAMYAMLGTRPDIAYSVSVVSRFCANPTEAH
 ```
 
-Here the `>` denotes the header line and identifier for the protein sequence immediately below. The protein IDs are names by gene ID i.e. `g1` and transcript ID i.e. `t1` seperated by `.`.
+Here the `>` denotes the header line and identifier for the protein sequence immediately below. The protein IDs are names by gene ID i.e. `g1` and transcript ID i.e. `t1` seperated by `.`. You can use:
+
+```
+head Z.tritici.chr10.aa`
+```
+
+to view the start of the protein sequence file you have created.
 
 ## Summary
 

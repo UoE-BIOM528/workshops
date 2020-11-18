@@ -35,15 +35,15 @@ In this workshop we will use the first million reads in just 2 of the fastq file
 head -n 4000000 SRR4239880.fastq > SRR4239880_subset.fastq
 ```
 
-This command uses `head`, which is a program to view the initial contents of a file. By default `head` only views the first 10 lines of the file but we can use the `-n` option to specify the number of lines to output. Here, we use `head` to output the first 4 million lines (corresponds to 1 million reads) of the the input file `SRR4239880.fastq`. Finally, we use a redirect `>` to redirect the output of the command from the screen to a new file called `SRR4239880_subset.fastq`. The resulting file contains the first 1 million reads and will be much more tractable to analyse during the workshop.
+This command uses `head`, which is a program to view the initial contents of a file. By default `head` only views the first 10 lines of the file but we can use the `-n` option to specify the number of lines to output. Here, we use `head` to output the first 4 million lines (corresponds to 1 million reads) of the the input file `SRR4239880.fastq`. Finally, we use a redirect `>` to redirect the output of the command from the screen to a new file called `SRR4239880_subset.fastq`. The resulting file contains the first 1 million reads and will be much more tractable to analyse during the workshop. This step has already been done for you.
 
-You will find the data at:
+You will find the data by moving to the data directory that stores the fastq files using:
 
 ```
-DATA DIRECTORY!!
+cd ~/Desktop/Data/fastq/
 ```
 
-You will see two subsetted fastq files. You can view the format of these files with the Linux command `less`.
+If you then use the command `ls` to list files in the directory you will see two subsetted fastq files. You can view the format of these files with the Linux command `less`.
 
 ```
 less SRR4239880_subset.fastq
@@ -104,7 +104,7 @@ q=./SRR4239881_subset.fastq
 q=./SRR4239880_subset.fastq
 ```
 
-Save the file.
+Save the file as `config.txt`.
 
 Our config file contains lots of information so lets go through exactly what options we have used.
 * `max_rd_len` specifies the maximum read length in our input data. A quick look at the fastq files has the information `length=39`.
@@ -124,7 +124,7 @@ Finally, we have the `q` parameter, which specifies our input fastq files. As th
 It's now time to run SOAPdenovo2 and build our genome assembly. In our working directory we have our 2 fastq files and our created config file. To actually run SOAPdenovo2 we use:
 
 ```
-<path-to-SOAPdenovo>SOAPdenovo-63mer all -s config1.txt -K 13 -p 4 -o z.tritici 2>assembly.log
+SOAPdenovo>SOAPdenovo-63mer all -s config.txt -K 13 -p 4 -o z.tritici 2>assembly.log
 ```
 
 Let's break this command down. We start by specifying the program to run, `SOAPdenovo-63mer`, which is a specific version of SOAPdenovo2. Then we specify `all`, which runs the full SOAPdenovo2 pipeline programs (including pregraph, contig, map, scaff). We could run each of these steps individually but the `all` command makes things simple. We then tell SOAPdenovo, Kmer size to use with the `-K` flag, this is the size of the sequence used to align reads and build contigs/scaffolds. We use a small value her as our reads are short. Next is `-p 4` to tell SOAPdenovo2 to use 4 CPUs to run calculations in parallel and speed up the processing. Next is the `-o` flag where we can specify a `z.tritici` prefix for the output files. Finally, we use a redirect `2>assembly.log` to redict the logging information to a file called  `assembly.log`. We do this so that we can save the running information about which parameters have been used and for debugging in case the program crashes or was unable to finish.

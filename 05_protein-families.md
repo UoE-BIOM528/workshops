@@ -30,10 +30,18 @@ To infer our protein families we will first have to complete multiple preparatio
 
 ### Data reformatting
 
-Our initial data is in fasta format. We can use the `head` command to view the first 10 lines of one of our fasta files. Navigate to the directory containing the fasta files and use the command:
+Our initial data is in fasta format. We can use the `head` command to view the first 10 lines of one of our fasta files. Navigate to the directory containing the fasta files
+
+
 
 ```
-head Z.tritici.fasta
+cd ~/Desktop/Data/clusters/
+```
+
+and use the command:
+
+```
+head Z.tritici.proteins.fasta
 ```
 
 You will see an output that looks like:

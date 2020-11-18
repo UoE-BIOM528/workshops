@@ -30,6 +30,15 @@ There are several steps to this analysis:
 
 ### Extracting protein and coding sequences
 
+
+To start we will navigate to the correct data directory:
+
+```
+cd ~/Desktop/Data/families/
+```
+
+If we use `ls` to list the files in this directory you will see there is a file named `selection_families.txt` and a directory named  `species`, which contains the transcript and protein sequences for each of our *Zymoseptoria* species.
+
 First we need to extract the coding and protein sequences for each protein family. For this analysis we will use only 3 of our identified protein families. These can be found in the file `selection_families.txt`. Next, create a new file, `fasta_creator.py`, with your favourite text editor and paste in the following code:
 
 ``` { python }
@@ -326,4 +335,4 @@ Overall, we have completed our full workflow and you have now gained experience 
 * *De novo* genome assembly from raw sequencing reads
 * Gene prediction from genomic sequence
 * Protein family identification
-* Evolutionary analysis of protein families 
+* Evolutionary analysis of protein families

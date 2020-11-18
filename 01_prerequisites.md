@@ -5,14 +5,14 @@ order: 1
 ---
 # Workshop setup
 
-There are two ways of completing these wokshops:
+There are two ways of completing these workshops:
 
 1. Use a virtual machine on OpenStack
   * You will need to create an instance on OpenStack
   * All software and data needed will be pre-installed
   * An internet connection will be required (+ a VPN for off-campus access)
 2. Use your own machine
-  * A mac or linux machine will be best
+  * A mac or linux machine will be needed - if you use Windows please use option 1.
   * Software will need to be installed on your local machine
   * Data will need to be downloaded
 
@@ -20,32 +20,34 @@ There are two ways of completing these wokshops:
 
 ### Creating an instance on Openstack
 
-A video tutorial to connect to OpenStack and launching an instance is [here](https://youtu.be/JIoFJBWTtlg)
+A video tutorial to connect to [OpenStack](https://openstack.exeter.ac.uk/) and launching an instance is [here](https://youtu.be/JIoFJBWTtlg). You can also find a step by step walkthrough [here](https://biomedicalhub.github.io/openstack/05-create-instance.html).  
 
 To successfully create an instance you will need to select the following options:
 
 #### Log on details
-* Domain:
-* User name:
-* Password:
+* Domain: default
+* User name: hubtraining_student
+* Password: yTpEMUJsfD7z
 
 
 #### Openstack instance
 Please name your instance something that you will remember - including your name is a good idea. Then follow the instructions using the following options:
 
 * Boot source: _Instance Snapshot_
-* Name:
+* Name: BIOM528-RA
 * Flavour: _u1.xxlarge_
 
 Once the instance has started remember to take note of the IP address (use Edit-Copy).
 
 ### Log onto your instance
 
-A video tutorial to connect to your virtual machine using Terminal (mac) or MobaXterm (windows) is [here](https://youtu.be/qPPBjTSppvE)
+A video tutorial to connect to your virtual machine using Terminal (Mac) or MobaXterm (windows) is [here](https://youtu.be/qPPBjTSppvE).
 
 The log in details are:
-* User name:
-* Password:
+* User name: ubuntu
+* Password: rna2017
+
+If you're on Linux or Mac you can complete the workshops simply using SSH `ssh ubuntu@<ip-address>` and enter the password when prompted (you may need to accept permissions when prompted). If you want to access the instance using a graphical interface then use MobaXterm.
 
 Once you have successfully logged on, its time to begin the workshop!
 
@@ -62,13 +64,75 @@ To successfully use your own machine you will need to:
 In these workshops we will be using:
 * SOAPdeNOVO2 (genome assembly)
 * Augustus (gene prediction)
-* MCL algorithm (gene family identification)
+* BLAST and MCL algorithm (gene family identification)
 * RAxML (gene tree inference)
 * PAML (Estimation of accelerated evolution)
 
 More detailed information on these software, including installation instructions can be found below.
 
 ### Downloading workshop data
+
+There are a few files to download and some organisation required if you are to complete these workshops on your own machine.
+
+First we will download the raw sequence data in 4 parts - use right click and 'Save as':
+* [SRR4239880 part 1](data/SRR4239880_subset_part1.fastq)
+* [SRR4239880 part 2](data/SRR4239880_subset_part2.fastq)
+* [SRR4239881 part 1](data/SRR4239881_subset_part1.fastq)
+* [SRR4239880 part 2](data/SRR4239881_subset_part2.fastq)
+
+These files have had to be split into small parts so that they can be stored on GitHub. We will now need to combine them for the workshops. On the command line (Linux and Mac) navigate to the directory storing these files and use the commands:
+
+```
+cat SRR4239880_subset_part1.fastq SRR4239880_subset_part2.fastq > SRR4239880_subset.fastq
+```
+
+then
+
+```
+cat SRR4239881_subset_part1.fastq SRR4239881_subset_part2.fastq > SRR4239881_subset.fastq
+```
+
+Next, we need to download two chromosome sequences that can be found [here](data/Z.tritici.chr10.fasta) and [here](data/Z.tritici.chr11.fasta). Again right click the links and chose 'Save as'.
+
+Now, we can download 4 files containing protein sequences that will be used to identify protein families. The files for 4 species of *Zymoseptoria* can be accessed by right clicking and choosing 'Save As' on the species links below:
+
+* [*Z. tritici*](data/Z.tritici.proteins.fasta)
+* [*Z. ardabiliae*](data/Z.ardabiliae.proteins.fasta)
+* [*Z. brevis*](data/Z.brevis.proteins.fasta)
+* [*Z. pseudotritici*](data/Z.pseudotritici.proteins.fasta)
+
+Next, we can download the files used to conduct our evolutionary analysis. We a [file](data/selection_families.txt) that contains a selection of protein families and a set of transcript files:
+
+* [*Z. tritici*](data/Z.tritici.transcripts.fasta)
+* [*Z. ardabiliae*](data/Z.ardabiliae.transcripts.fasta)
+* [*Z. brevis*](data/Z.brevis.transcripts.fasta)
+* [*Z. pseudotritici*](data/Z.pseudotritici.transcripts.fasta)
+
+Finally, we need some organisation of these data files to match the references that will be used throughout the workshop. On the virtual machine, the `Data` directory is located on the `Desktop`. Below is a schematic of the directory structure we will be using:
+
+* Data/
+  * fastq/
+    * SRR4239880_subset.fastq
+    * SRR4239881_subset.fastq
+  * Z.tritici/
+    * Z.tritici.chr10.fasta
+    * Z.tritici.chr11.fasta
+  * clusters/
+    * Z.tritici.proteins.fasta
+    * Z.brevis.proteins.fasta
+    * Z.ardabiliae.proteins.fasta
+    * Z.pseudotritici.proteins.fasta
+  * families/
+    * selection_families.txt
+    * species/
+      * Z.tritici.transcripts.fasta
+      * Z.tritici.proteins.fasta
+      * Z.brevis.transcripts.fasta
+      * Z.brevis.proteins.fasta
+      * Z.ardabiliae.transcripts.fasta
+      * Z.ardabiliae.proteins.fasta
+      * Z.pseudotritici.transcripts.fasta
+      * Z.pseudotritici.proteins.fasta
 
 #### SOAPdenovo2 Genome Assembler
 
@@ -359,3 +423,5 @@ Charlie Taylor    (UF)
 #### PAML
 
 We will be using [PAML](http://abacus.gene.ucl.ac.uk/software/paml.html), which has extensive documentation and installation instructions. Please follow the instructions to install PAML on your machine. Instructions are included for Windows, Mac OSX (including precompiled binaries) and Linux.
+
+Once you have the data and all software installed you're ready to being the workshop.
