@@ -45,7 +45,7 @@ A video tutorial to connect to your virtual machine using Terminal (Mac) or Moba
 
 The log in details are:
 * User name: ubuntu
-* Password: rna2017
+* Password: zymoseptoria
 
 If you're on Linux or Mac you can complete the workshops simply using SSH `ssh ubuntu@<ip-address>` and enter the password when prompted (you may need to accept permissions when prompted). If you want to access the instance using a graphical interface then use MobaXterm.
 
