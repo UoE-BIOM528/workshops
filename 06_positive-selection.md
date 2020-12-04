@@ -39,68 +39,13 @@ cd ~/Desktop/Data/families/
 
 If we use `ls` to list the files in this directory you will see there is a file named `selection_families.txt` and a directory named  `species`, which contains the transcript and protein sequences for each of our *Zymoseptoria* species.
 
-First we need to extract the coding and protein sequences for each protein family. For this analysis we will use only 3 of our identified protein families. These can be found in the file `selection_families.txt`. Next, create a new file, `fasta_creator.py`, with your favourite text editor and paste in the following code:
+First we need to extract the coding and protein sequences for each protein family. For this analysis we will use only 3 of our identified protein families. These can be found in the file `selection_families.txt`. Next, we will use a supplied python script, `fasta_creator.py` to extract the data needed for further analysis. Take a look at the scripts with:
 
-``` { python }
-import sys
-
-def read_fasta(file, sequences):
-    '''
-    Read a fasta file and record the sequences
-    Returns a dictionary storing the header->sequence
-    '''
-    header = ''
-    seq = ''
-    fh = open(file, 'r')
-    for line in fh.readlines():
-        line = line.rstrip()
-        if line.startswith('>'):
-            if header != '':
-                sequences[header] = seq
-                header = ''
-                seq = ''
-            header = line.replace('>', '')
-        else:
-            seq = seq + line
-    sequences[header] = seq
-    fh.close()
-    return sequences
-
-
-# Get the user defined parameters
-family_file = sys.argv[1]
-fasta_files = sys.argv[2:]
-
-# Read in all the sequences
-transcripts = {}
-proteins = {}
-for transcript_file in fasta_files:
-    transcripts = read_fasta(transcript_file, transcripts)
-    protein_file = transcript_file.replace('transcripts', 'proteins')
-    proteins = read_fasta(protein_file, proteins)
-
-# Create a protein and coding fasta for each gene family
-fam_id = 1
-fh = open(family_file, 'r')
-for line in fh.readlines():
-    line = line.rstrip()
-    ids = line.split('\t')
-
-    trans = open('Fam{:04d}_coding.fa'.format(fam_id), 'w')
-    prot = open('Fam{:04d}_protein.fa'.format(fam_id), 'w')
-
-    for id in ids:
-        if id in transcripts and id in proteins:
-            trans.write(">{0}\n{1}\n".format(id, transcripts[id]))
-            prot.write(">{0}\n{1}\n".format(id, proteins[id]))
-
-    fam_id = fam_id + 1
-    trans.close()
-    prot.close()
-fh.close()
+```
+less fasta_creator.py
 ```
 
-Briefly, this Python script will read in protein and transcript files for our 4 species, then iterate round the protein families and extract the relevant protein and coding sequences. Finally the script creates a protein and coding sequence fasta file for each protein family. To run the script we will use the command:
+to see the code (quit the viewer by pressing `q`). Briefly, this Python script will read in protein and transcript files for our 4 species, then iterate round the protein families and extract the relevant protein and coding sequences. Finally the script creates a protein and coding sequence fasta file for each protein family. To run the script we will use the command:
 
 ```
 python fasta_creator.py selection_families.txt species/Z.tritici.transcripts.fasta species/Z.ardabiliae.transcripts.fasta species/Z.brevis.transcripts.fasta species/Z.pseudotritici.transcripts.fasta

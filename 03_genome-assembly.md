@@ -79,7 +79,13 @@ Illumima GA produces two types of paired-end libraries: a) forward-reverse, gene
 
 ### The config file
 
-Let's create our own config file called `config.txt`, based off the template available on the GitHub page, that we will use to run our own analysis. Use your favourite text editor (vi, vim, nano) to edit a new file ad input the following information:
+Let's create our own config file called `config.txt`, based off the template available on the GitHub page, that we will use to run our own analysis. Use your favourite text editor (vi, vim, nano) to edit a new file. I would recommend using [nano](https://www.nano-editor.org/), a command line text editor.  To create a new file using nano use:
+
+```
+nano config.txt
+```
+
+Input the following information:
 
 ```
 #maximal read length
@@ -104,9 +110,10 @@ q=./SRR4239881_subset.fastq
 q=./SRR4239880_subset.fastq
 ```
 
-Save the file as `config.txt`.
+As nano is command line based all actions, such as moving around, deleting text and saving are carried out with keyboard shortcuts. A [cheatsheet](https://www.nano-editor.org/dist/latest/cheatsheet.html) of nano's commands is available to help you create this file.
 
-Our config file contains lots of information so lets go through exactly what options we have used.
+Once created, our config file contains lots of information, so lets go through exactly what options we have used.
+
 * `max_rd_len` specifies the maximum read length in our input data. A quick look at the fastq files has the information `length=39`.
 * `[LIB]` next we specify a library - some sequencing projects can use multiple libraries, each of which may need different parameters but our toy example only uses 1 library. All parameters specified below this tag will be used for this library.
 * `avg_ins` is our average insert size during library preparation for sequencing. We can see in the original manuscript by [Goodwin *et al.* 2011](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1002070) that they used three libraries with insert sizes ranging from 2kb to 40kb. For our example we're assuming a single library with the smallest insert size of 2kb.
@@ -124,10 +131,10 @@ Finally, we have the `q` parameter, which specifies our input fastq files. As th
 It's now time to run SOAPdenovo2 and build our genome assembly. In our working directory we have our 2 fastq files and our created config file. To actually run SOAPdenovo2 we use:
 
 ```
-SOAPdenovo>SOAPdenovo-63mer all -s config.txt -K 13 -p 4 -o z.tritici 2>assembly.log
+SOAPdenovo-63mer all -s config.txt -K 13 -p 4 -o z.tritici 2>assembly.log
 ```
 
-Let's break this command down. We start by specifying the program to run, `SOAPdenovo-63mer`, which is a specific version of SOAPdenovo2. Then we specify `all`, which runs the full SOAPdenovo2 pipeline programs (including pregraph, contig, map, scaff). We could run each of these steps individually but the `all` command makes things simple. We then tell SOAPdenovo, Kmer size to use with the `-K` flag, this is the size of the sequence used to align reads and build contigs/scaffolds. We use a small value her as our reads are short. Next is `-p 4` to tell SOAPdenovo2 to use 4 CPUs to run calculations in parallel and speed up the processing. Next is the `-o` flag where we can specify a `z.tritici` prefix for the output files. Finally, we use a redirect `2>assembly.log` to redict the logging information to a file called  `assembly.log`. We do this so that we can save the running information about which parameters have been used and for debugging in case the program crashes or was unable to finish.
+If you're using your own machine you may need to include the path to where you installed SOAPdenovo2 if  you have  not added it to your path. Let's break this command down. We start by specifying the program to run, `SOAPdenovo-63mer`, which is a specific version of SOAPdenovo2. Then we specify `all`, which runs the full SOAPdenovo2 pipeline programs (including pregraph, contig, map, scaff). We could run each of these steps individually but the `all` command makes things simple. We then tell SOAPdenovo, Kmer size to use with the `-K` flag, this is the size of the sequence used to align reads and build contigs/scaffolds. We use a small value her as our reads are short. Next is `-p 4` to tell SOAPdenovo2 to use 4 CPUs to run calculations in parallel and speed up the processing. Next is the `-o` flag where we can specify a `z.tritici` prefix for the output files. Finally, we use a redirect `2>assembly.log` to redict the logging information to a file called  `assembly.log`. We do this so that we can save the running information about which parameters have been used and for debugging in case the program crashes or was unable to finish.
 
 SOAPdenovo2 should run for about 3 minutes before finishing. Use `ls` to list the files in our working directory. You should see a bunch of new files beginning with the prefix of `z.tritici`. To see a comprehensive list of output files see [Appendix B](https://github.com/aquaskyline/SOAPdenovo2). You can see that each program in the pipeline produces multiple output files, however we are only really interested in 2 of these.
 

@@ -135,7 +135,7 @@ KLIPKTENNRTVTNAVSLGEAMYAMLGTRPDIAYSVSVVSRFCANPTEAH
 Here the `>` denotes the header line and identifier for the protein sequence immediately below. The protein IDs are names by gene ID i.e. `g1` and transcript ID i.e. `t1` seperated by `.`. You can use:
 
 ```
-head Z.tritici.chr10.aa`
+head Z.tritici.chr10.aa
 ```
 
 to view the start of the protein sequence file you have created.

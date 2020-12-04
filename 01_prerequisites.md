@@ -41,13 +41,13 @@ Once the instance has started remember to take note of the IP address (use Edit-
 
 ### Log onto your instance
 
-A video tutorial to connect to your virtual machine using Terminal (Mac) or MobaXterm (windows) is [here](https://youtu.be/qPPBjTSppvE).
+A video tutorial to connect to your virtual machine using Terminal (Mac) or [MobaXterm](https://mobaxterm.mobatek.net/) (windows) is [here](https://youtu.be/qPPBjTSppvE). MobaXterm is installed by default on the University PCs.
 
 The log in details are:
 * User name: ubuntu
 * Password: zymoseptoria
 
-If you're on Linux or Mac you can complete the workshops simply using SSH `ssh ubuntu@<ip-address>` and enter the password when prompted (you may need to accept permissions when prompted). If you want to access the instance using a graphical interface then use MobaXterm.
+If you're on Linux or Mac you can complete the workshops simply using SSH `ssh ubuntu@<ip-address>` and enter the password when prompted (you may need to accept permissions when prompted). If you want to access the instance using a graphical interface then use [MobaXterm](https://mobaxterm.mobatek.net/), which will need to be downloaded if you're using your own machine.
 
 Once you have successfully logged on, its time to begin the workshop!
 
