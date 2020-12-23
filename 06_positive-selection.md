@@ -92,7 +92,7 @@ LAEAV--------------------QYLDVL---HNQLNNAQYTDFWSTLDSSDLYADL-
 In order to calculate *dN/dS* we need what's known as a codon alignment. This is nucleotide sequences alignment by codon rather than by base. To produce a codon alignment we first take a protein alignment to note the positions of matches and gaps in the alignment. Then in the transcript sequences we print 3 nucleotides (codon) for each match in the protein alignment and three gap, `-`, characters for each gap in the protein alignment. If you have an interest in programming this is a relatively simple and interesting small project and the code produced will be useful. However, for this exercise we will use [Pal2Nal](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1538804/), a tool developed specifically for this purpose:
 
 ```
-~/Bin/pal2nal.v14/pal2nal.pl Fam0001_protein.afa Fam0001_coding.fa -output paml -nogap -nostderr > Fam0001_codon.fa
+~/software/pal2nal.v14/pal2nal.pl Fam0001_protein.afa Fam0001_coding.fa -output paml -nogap -nostderr > Fam0001_codon.fa
 ```
 
 Here we call the pal2nal Perl script and pass (in a specific order) the aligned protein file, the unaligned transcript file, specify the output format `-output paml`, tell the program to remove gaps `-nogap` (these are uninformative) and do not print lots of progress information to the screen `nostderr`. Finally, we redirect `>` the output to a new file called `Fam0001_codon.fa`. You can see the first few lines of the file with:
@@ -143,7 +143,7 @@ Here we call RAxML, with the specific command `raxmlHPC-AVX` and pass a variety 
 The program will take a few minutes to run and produce a series of output files. There is lots of information in these files but at the moment we are only interested in a single file, `RAxML_bestree.FAM0001`. This file contains our tree in newick string format, a text representation of a phylogenetic tree. We can see the contents of our best tree file with:
 
 ```
-head RAxML_bestree.Fam0001
+head RAxML_bestTree.Fam0001
 ```
 
 to see our tree:
